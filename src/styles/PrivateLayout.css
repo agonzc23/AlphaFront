@@ -1,0 +1,12 @@
+.private-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 200px; /* mismo ancho que la sidebar */
+  padding: 2rem;
+  padding-bottom: 80px; /* espacio para el footer */
+  box-sizing: border-box;
+}

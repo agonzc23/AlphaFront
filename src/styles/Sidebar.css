@@ -1,0 +1,46 @@
+.sidebar {
+  width: 180px;
+  background-color:  #00abe4;
+  height: 100vh;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  color:#E9F1FA;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 1rem;
+}
+
+.sidebar a {
+  color: #E9F1FA;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #00ABE4;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  width: 20px;
+  height: 20px;
+}

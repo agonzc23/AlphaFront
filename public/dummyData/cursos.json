@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Curso de Geografia",
+    "desc": "Explora los continentes, países, climas y paisajes del mundo en este curso de geografía."
+  },
+  {
+    "id": 2,
+    "name": "Curso de Historia",
+    "desc": "Conoce los hechos, personajes y épocas más importantes de la historia universal."
+  },
+  {
+    "id": 3,
+    "name": "Curso de Matematicas",
+    "desc": "Aprende los conceptos fundamentales de matemáticas: aritmética, álgebra, geometría y más."
+  }
+]

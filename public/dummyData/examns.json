@@ -1,0 +1,208 @@
+{
+  "examns": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "name": "Examen de Geografia",
+      "description": "Este es un examen de geografia para la aplicación de exámenes.",
+      "passPercentage": 50,
+      "duration": 10,
+      "questions": [
+        {
+          "id": 1,
+          "question": "¿Cuál es la capital de España?",
+          "options": [
+            { "id": 1, "option": "Madrid", "isCorrect": true },
+            { "id": 2, "option": "Barcelona", "isCorrect": false },
+            { "id": 3, "option": "Valencia", "isCorrect": false },
+            { "id": 4, "option": "Sevilla", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "¿Cuál es la capital de Francia?",
+          "options": [
+            { "id": 5, "option": "Berlín", "isCorrect": false },
+            { "id": 6, "option": "Madrid", "isCorrect": false },
+            { "id": 7, "option": "París", "isCorrect": true },
+            { "id": 8, "option": "Londres", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "courseId": 3,
+      "name": "Examen de Matematicas",
+      "description": "Este es un examen de Matematicas para la aplicación de exámenes.",
+      "passPercentage": 70,
+      "duration": 10,
+      "questions": [
+        {
+          "id": 3,
+          "question": "¿Cuánto es 2 + 2?",
+          "options": [
+            { "id": 9, "option": "3", "isCorrect": false },
+            { "id": 10, "option": "4", "isCorrect": true },
+            { "id": 11, "option": "5", "isCorrect": false },
+            { "id": 12, "option": "6", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "¿Cuánto es 2 x 3?",
+          "options": [
+            { "id": 13, "option": "3", "isCorrect": false },
+            { "id": 14, "option": "4", "isCorrect": false },
+            { "id": 15, "option": "5", "isCorrect": false },
+            { "id": 16, "option": "6", "isCorrect": true }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "¿Cuánto es 5 x 3?",
+          "options": [
+            { "id": 17, "option": "8", "isCorrect": false },
+            { "id": 18, "option": "20", "isCorrect": true },
+            { "id": 19, "option": "15", "isCorrect": true },
+            { "id": 20, "option": "12", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 6,
+          "question": "¿Cuánto es 1 + 1?",
+          "options": [
+            { "id": 21, "option": "4", "isCorrect": false },
+            { "id": 22, "option": "2", "isCorrect": true },
+            { "id": 23, "option": "5", "isCorrect": false },
+            { "id": 24, "option": "6", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "courseId": 2,
+      "name": "Examen de Historia",
+      "description": "Este es un examen de Historia para la aplicación de exámenes.",
+      "duration": 0.2,
+      "passPercentage": 60,
+      "questions": [
+        {
+          "id": 7,
+          "question": "¿Quién fue el primer presidente de los Estados Unidos?",
+          "options": [
+            { "id": 25, "option": "George Washington", "isCorrect": true },
+            { "id": 26, "option": "Abraham Lincoln", "isCorrect": false },
+            { "id": 27, "option": "Thomas Jefferson", "isCorrect": false },
+            { "id": 28, "option": "John Adams", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 8,
+          "question": "¿En qué año comenzó la Segunda Guerra Mundial?",
+          "options": [
+            { "id": 29, "option": "1939", "isCorrect": true },
+            { "id": 30, "option": "1945", "isCorrect": false },
+            { "id": 31, "option": "1914", "isCorrect": false },
+            { "id": 32, "option": "1929", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "courseId": 1,
+      "name": "Examen de Geografia II",
+      "description": "Segundo examen de geografía con nuevas preguntas.",
+      "passPercentage": 60,
+      "duration": 8,
+      "questions": [
+        {
+          "id": 9,
+          "question": "¿Cuál es el río más largo del mundo?",
+          "options": [
+            { "id": 33, "option": "Nilo", "isCorrect": false },
+            { "id": 34, "option": "Amazonas", "isCorrect": true },
+            { "id": 35, "option": "Yangtsé", "isCorrect": false },
+            { "id": 36, "option": "Misisipi", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 10,
+          "question": "¿En qué continente se encuentra Egipto?",
+          "options": [
+            { "id": 37, "option": "Asia", "isCorrect": false },
+            { "id": 38, "option": "África", "isCorrect": true },
+            { "id": 39, "option": "Europa", "isCorrect": false },
+            { "id": 40, "option": "Oceanía", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "name": "Examen de Matematicas II",
+      "description": "Segundo examen de matemáticas con nuevas preguntas.",
+      "passPercentage": 70,
+      "duration": 8,
+      "questions": [
+        {
+          "id": 11,
+          "question": "¿Cuánto es 10 / 2?",
+          "options": [
+            { "id": 41, "option": "2", "isCorrect": false },
+            { "id": 42, "option": "5", "isCorrect": true },
+            { "id": 43, "option": "10", "isCorrect": false },
+            { "id": 44, "option": "20", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 12,
+          "question": "¿Cuánto es la raíz cuadrada de 16?",
+          "options": [
+            { "id": 45, "option": "2", "isCorrect": false },
+            { "id": 46, "option": "4", "isCorrect": true },
+            { "id": 47, "option": "8", "isCorrect": false },
+            { "id": 48, "option": "16", "isCorrect": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "courseId": 2,
+      "name": "Examen de Historia II",
+      "description": "Segundo examen de historia con nuevas preguntas.",
+      "passPercentage": 60,
+      "duration": 8,
+      "questions": [
+        {
+          "id": 13,
+          "question": "¿Quién descubrió América en 1492?",
+          "options": [
+            { "id": 49, "option": "Cristóbal Colón", "isCorrect": true },
+            { "id": 50, "option": "Américo Vespucio", "isCorrect": false },
+            {
+              "id": 51,
+              "option": "Fernando de Magallanes",
+              "isCorrect": false
+            },
+            { "id": 52, "option": "Hernán Cortés", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 14,
+          "question": "¿En qué año terminó la Primera Guerra Mundial?",
+          "options": [
+            { "id": 53, "option": "1918", "isCorrect": true },
+            { "id": 54, "option": "1939", "isCorrect": false },
+            { "id": 55, "option": "1945", "isCorrect": false },
+            { "id": 56, "option": "1929", "isCorrect": false }
+          ]
+        }
+      ]
+    }
+  ]
+}
