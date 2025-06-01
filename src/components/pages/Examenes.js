@@ -11,16 +11,25 @@ export default function Examenes() {
     const [selectedExamen, setSelectedExamen] = useState(null);
 
     useEffect(() => {
-        fetch("/dummyData/examns.json")
+        fetch("/dummyData/realExams.json")
             .then(res => res.json())
-            .then(data => setExamenes(data.examns || []));
+            .then(data => setExamenes(data || []));
     }, []);
 
     // Filtra los exámenes por el courseId del contexto
     const examenesFiltrados = examenes.filter(e => e.courseId === cursoId);
 
     if (examenActivo) {
-        return <ExamenReal examenId={examenActivo} onFinish={() => setExamenActivo(null)} />;
+        const examen = examenes.find(e => e.id === examenActivo);
+        return (
+            <ExamenReal
+                examenId={examenActivo}
+                examenName={examen?.title}
+                questions={examen?.questions || []}
+                duration={examen?.duration}
+                onFinish={() => setExamenActivo(null)}
+            />
+        );
     }
 
     const handleRealizarClick = (examenId) => {
@@ -45,11 +54,10 @@ export default function Examenes() {
                 {examenesFiltrados.map(examen => (
                     <div className="card mb-3" style={{ width: "40rem" }} key={examen.id}>
                         <div className="card-body">
-                            <h5 className="card-title">{examen.name}</h5>
+                            <h5 className="card-title">{examen.title}</h5>
                             <p className="card-text">{examen.description}</p>
                             <ul className="list-unstyled mb-0">
                                 <li><strong>Duración:</strong> {examen.duration} minutos</li>
-                                <li><strong>Porcentaje de aprobado:</strong> {examen.passPercentage}%</li>
                                 <li><strong>Número de preguntas:</strong> {examen.questions ? examen.questions.length : 0}</li>
                             </ul>
                             <div className="mt-3">

@@ -7,7 +7,16 @@ export default function ConfirmAlert({ show, title, message, onConfirm, onCancel
             className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
             style={{ background: "rgba(0,0,0,0.3)", zIndex: 2000 }}
         >
-            <div className="bg-white rounded shadow p-4" style={{ minWidth: 320 }}>
+            <div
+                className="bg-white rounded shadow p-4"
+                style={{
+                    minWidth: 320,
+                    maxWidth: 400,
+                    maxHeight: 350,
+                    overflowY: "auto",
+                    overflowX: "hidden"
+                }}
+            >
                 <h5>{title}</h5>
                 <p>{message}</p>
                 <div className="d-flex justify-content-end gap-2 mt-3">

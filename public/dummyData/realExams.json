@@ -1,0 +1,383 @@
+[
+    {
+        "id": 1,
+        "title": "ExamOtan2",
+        "description": "Examen para probar",
+        "duration": 10,
+        "createdAt": "2025-06-01T16:09:19.994+00:00",
+        "questions": [
+            {
+                "id": 1,
+                "questionText": "¿Cómo se conoce popularmente el Tratado del Atlántico Norte de 1949?",
+                "orderQuestion": 1,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 1,
+                        "answerText": "Tratado de Versalles",
+                        "orderAnswer": "a",
+                        "question": 1,
+                        "correct": false
+                    },
+                    {
+                        "id": 2,
+                        "answerText": "Tratado de Washington",
+                        "orderAnswer": "b",
+                        "question": 1,
+                        "correct": true
+                    },
+                    {
+                        "id": 3,
+                        "answerText": "Tratado de Teherán",
+                        "orderAnswer": "c",
+                        "question": 1,
+                        "correct": false
+                    },
+                    {
+                        "id": 4,
+                        "answerText": "Tratado de San Francisco",
+                        "orderAnswer": "d",
+                        "question": 1,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 2,
+                "questionText": "¿Cuántos artículos tiene el Tratado del Atlántico Norte?",
+                "orderQuestion": 2,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 5,
+                        "answerText": "14",
+                        "orderAnswer": "a",
+                        "question": 2,
+                        "correct": true
+                    },
+                    {
+                        "id": 6,
+                        "answerText": "34",
+                        "orderAnswer": "b",
+                        "question": 2,
+                        "correct": false
+                    },
+                    {
+                        "id": 7,
+                        "answerText": "15",
+                        "orderAnswer": "c",
+                        "question": 2,
+                        "correct": false
+                    },
+                    {
+                        "id": 8,
+                        "answerText": "24",
+                        "orderAnswer": "d",
+                        "question": 2,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 3,
+                "questionText": "¿Qué Tratado firmaron franceses y británicos en 1947?",
+                "orderQuestion": 3,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 9,
+                        "answerText": "Tratado de Washington ",
+                        "orderAnswer": "a",
+                        "question": 3,
+                        "correct": false
+                    },
+                    {
+                        "id": 10,
+                        "answerText": "Tratado de Dunquerque ",
+                        "orderAnswer": "b",
+                        "question": 3,
+                        "correct": true
+                    },
+                    {
+                        "id": 11,
+                        "answerText": "Tratado de París",
+                        "orderAnswer": "c",
+                        "question": 3,
+                        "correct": false
+                    },
+                    {
+                        "id": 12,
+                        "answerText": "Tratado de Londres",
+                        "orderAnswer": "d",
+                        "question": 3,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 4,
+                "questionText": "¿Qué países firmaron en 1948 el Tratado de Bruselas? ",
+                "orderQuestion": 4,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 13,
+                        "answerText": "EE. UU, Italia y Bélgica",
+                        "orderAnswer": "a",
+                        "question": 4,
+                        "correct": false
+                    },
+                    {
+                        "id": 14,
+                        "answerText": "Países Bajos, el Reino Unido, Bélgica y Francia",
+                        "orderAnswer": "b",
+                        "question": 4,
+                        "correct": false
+                    },
+                    {
+                        "id": 15,
+                        "answerText": "Luxemburgo, Bélgica y Países Bajos",
+                        "orderAnswer": "c",
+                        "question": 4,
+                        "correct": false
+                    },
+                    {
+                        "id": 16,
+                        "answerText": "Las respuestas b) y c) son correctas",
+                        "orderAnswer": "d",
+                        "question": 4,
+                        "correct": true
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 5,
+                "questionText": "¿Qué resolución de EE. UU aprobó el Programa de Asistencia Militar en apoyo al rearme de Europa Occidental? ",
+                "orderQuestion": 5,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 17,
+                        "answerText": "Resolución de Washington",
+                        "orderAnswer": "a",
+                        "question": 5,
+                        "correct": false
+                    },
+                    {
+                        "id": 18,
+                        "answerText": "Resolución de San Francisco",
+                        "orderAnswer": "b",
+                        "question": 5,
+                        "correct": false
+                    },
+                    {
+                        "id": 19,
+                        "answerText": "Resolución de Vanderberg",
+                        "orderAnswer": "c",
+                        "question": 5,
+                        "correct": true
+                    },
+                    {
+                        "id": 20,
+                        "answerText": "Resolución Marshall (plan)",
+                        "orderAnswer": "d",
+                        "question": 5,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 6,
+                "questionText": "¿Cómo se conoce al esbozo de los posteriores artículos del Tratado del Atlántico Norte?",
+                "orderQuestion": 6,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 21,
+                        "answerText": "Las conversaciones de las seis potencias ",
+                        "orderAnswer": "a",
+                        "question": 6,
+                        "correct": false
+                    },
+                    {
+                        "id": 22,
+                        "answerText": "El Washington Paper",
+                        "orderAnswer": "b",
+                        "question": 6,
+                        "correct": false
+                    },
+                    {
+                        "id": 23,
+                        "answerText": "Las conversaciones de la OTAN",
+                        "orderAnswer": "c",
+                        "question": 6,
+                        "correct": false
+                    },
+                    {
+                        "id": 24,
+                        "answerText": "Las respuestas a) y b) son correctas",
+                        "orderAnswer": "d",
+                        "question": 6,
+                        "correct": true
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 7,
+                "questionText": "¿Qué países participaron en las conversaciones de las seis potencias?",
+                "orderQuestion": 7,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 25,
+                        "answerText": "Países Bajos, el Reino Unido, Bélgica, Canadá, EE. UU y Francia",
+                        "orderAnswer": "a",
+                        "question": 7,
+                        "correct": true
+                    },
+                    {
+                        "id": 26,
+                        "answerText": "Luxemburgo, Países Bajos, el Reino Unido, Bélgica y Francia",
+                        "orderAnswer": "b",
+                        "question": 7,
+                        "correct": false
+                    },
+                    {
+                        "id": 27,
+                        "answerText": "Luxemburgo, Italia, el Reino Unido, Bélgica, EE. UU y Francia",
+                        "orderAnswer": "c",
+                        "question": 7,
+                        "correct": false
+                    },
+                    {
+                        "id": 28,
+                        "answerText": "Todas las respuestas son falsas",
+                        "orderAnswer": "d",
+                        "question": 7,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 8,
+                "questionText": "¿Qué país solicitó la inclusión del Congo en la OTAN?",
+                "orderQuestion": 8,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 29,
+                        "answerText": "Francia",
+                        "orderAnswer": "a",
+                        "question": 8,
+                        "correct": false
+                    },
+                    {
+                        "id": 30,
+                        "answerText": "EE.UU",
+                        "orderAnswer": "b",
+                        "question": 8,
+                        "correct": false
+                    },
+                    {
+                        "id": 31,
+                        "answerText": "Italia",
+                        "orderAnswer": "c",
+                        "question": 8,
+                        "correct": false
+                    },
+                    {
+                        "id": 32,
+                        "answerText": "Bélgica",
+                        "orderAnswer": "d",
+                        "question": 8,
+                        "correct": true
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 9,
+                "questionText": "¿Cuántos años deben transcurrir para que un estado pueda retirarse de la OTAN?",
+                "orderQuestion": 9,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 33,
+                        "answerText": "10 años ",
+                        "orderAnswer": "a",
+                        "question": 9,
+                        "correct": false
+                    },
+                    {
+                        "id": 34,
+                        "answerText": "20 años",
+                        "orderAnswer": "b",
+                        "question": 9,
+                        "correct": true
+                    },
+                    {
+                        "id": 35,
+                        "answerText": "15 años",
+                        "orderAnswer": "c",
+                        "question": 9,
+                        "correct": false
+                    },
+                    {
+                        "id": 36,
+                        "answerText": "Nunca podrá hacerlo",
+                        "orderAnswer": "d",
+                        "question": 9,
+                        "correct": false
+                    }
+                ],
+                "exam": 1
+            },
+            {
+                "id": 10,
+                "questionText": "¿Qué establecieron los miembros de la OTAN en 1991 para dialogar con los países del Pacto de Varsovia?",
+                "orderQuestion": 10,
+                "type": null,
+                "answers": [
+                    {
+                        "id": 37,
+                        "answerText": "El Consejo de Cooperación del Atlántico Norte",
+                        "orderAnswer": "a",
+                        "question": 10,
+                        "correct": false
+                    },
+                    {
+                        "id": 38,
+                        "answerText": "El Consejo de Ayuda al Pacto de Varsovia",
+                        "orderAnswer": "b",
+                        "question": 10,
+                        "correct": false
+                    },
+                    {
+                        "id": 39,
+                        "answerText": "El NACC (sus siglas en inglés)",
+                        "orderAnswer": "c",
+                        "question": 10,
+                        "correct": false
+                    },
+                    {
+                        "id": 40,
+                        "answerText": "Las respuestas a) y c) son correctas",
+                        "orderAnswer": "d",
+                        "question": 10,
+                        "correct": true
+                    }
+                ],
+                "exam": 1
+            }
+        ],
+        "courseId": 1,
+        "userCreatedId": null
+    }
+]

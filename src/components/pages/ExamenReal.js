@@ -1,25 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import ConfirmAlert from "../elements/ConfirmAlert";
 
-export default function ExamenReal({ examenId, onFinish }) {
-    const [questions, setQuestions] = useState([]);
-    const [examenName, setExamenName] = useState(""); // Nuevo estado para el nombre
+export default function ExamenReal({ examenName, questions, duration, onFinish }) {
     const [answers, setAnswers] = useState({});
-    const [timeLeft, setTimeLeft] = useState(0); // tiempo restante en segundos
+    const [timeLeft, setTimeLeft] = useState(() => (duration || 0) * 60);
     const [showConfirm, setShowConfirm] = useState(false);
     const [resultJson, setResultJson] = useState(null);
     const timerRef = useRef();
 
     useEffect(() => {
-        fetch("/dummyData/examns.json")
-            .then(res => res.json())
-            .then(data => {
-                const examen = data.examns.find(e => e.id === examenId);
-                setQuestions(examen?.questions || []);
-                setExamenName(examen?.name || "Examen"); // Guardar el nombre
-                setTimeLeft((examen?.duration || 0) * 60);
-            });
-    }, [examenId]);
+        if (duration) setTimeLeft(duration * 60);
+    }, [duration]);
 
     useEffect(() => {
         if (timeLeft <= 0 && questions.length > 0) {
@@ -47,7 +38,7 @@ export default function ExamenReal({ examenId, onFinish }) {
             questionId: q.id,
             selectedOptionId:
                 typeof answers[idx] !== "undefined"
-                    ? q.options[answers[idx]].id
+                    ? q.answers[answers[idx]].id
                     : null
         }));
         setResultJson(JSON.stringify(result, null, 2));
@@ -60,7 +51,7 @@ export default function ExamenReal({ examenId, onFinish }) {
             questionId: q.id,
             selectedOptionId:
                 typeof answers[idx] !== "undefined"
-                    ? q.options[answers[idx]].id
+                    ? q.answers[answers[idx]].id
                     : null
         }));
         setResultJson(JSON.stringify(result, null, 2));
@@ -92,12 +83,14 @@ export default function ExamenReal({ examenId, onFinish }) {
                 {questions.map((question, idx) => (
                     <li className="list-group-item me-4" key={idx}>
                         <div className="mb-2 fw-bold">
-                            {question.question || `Pregunta ${idx + 1}`}
+                            {/* Muestra el número de orden de la pregunta */}
+                            <span className="me-2">{question.orderQuestion}.</span>
+                            {question.questionText || `Pregunta ${idx + 1}`}
                         </div>
                         <div>
-                            {question.options && question.options.length > 0 ? (
+                            {question.answers && question.answers.length > 0 ? (
                                 <ul className="list-unstyled">
-                                    {question.options.map((opt, rIdx) => (
+                                    {question.answers.map((answ, rIdx) => (
                                         <li key={rIdx}>
                                             <div className="form-check">
                                                 <input
@@ -107,9 +100,10 @@ export default function ExamenReal({ examenId, onFinish }) {
                                                     id={`pregunta-${idx}-resp-${rIdx}`}
                                                     checked={answers[idx] === rIdx}
                                                     onChange={() => handleChange(idx, rIdx)}
+                                                    style={{ border: "2px solid #212529" }}
                                                 />
                                                 <label className="form-check-label" htmlFor={`pregunta-${idx}-resp-${rIdx}`}>
-                                                    {opt.option}
+                                                    <strong>{answ.orderAnswer}.</strong> {answ.answerText}
                                                 </label>
                                             </div>
                                         </li>
@@ -123,7 +117,7 @@ export default function ExamenReal({ examenId, onFinish }) {
                 ))}
             </ul>
             <button
-                className="btn btn-success mt-4"
+                className="btn btn-success mt-4 mb-4" // Añade mb-5 para más espacio abajo
                 onClick={() => handleFinish(false)}
             >
                 Finalizar Examen
