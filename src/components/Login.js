@@ -1,21 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "./AppContext";
 
 export default function LoginPage() {
-
     const navigate = useNavigate();
     const { setUser } = useContext(AppContext);
+    const [error, setError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
 
         const form = e.target;
         const email = form.elements.email.value;
-        const username = email.split("@")[0];
-        setUser(username);
-        // Aquí podrías validar la autenticación si quisieras
-        navigate("/seleccionar-curso", { state: { email } }); // Redirige a /cursos
+        const password = form.elements.password.value;
+
+        try {
+            const response = await fetch("http://localhost:8081/auth/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include", // Importante para recibir la cookie JWT
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                setUser(email.split("@")[0]);
+                navigate("/seleccionar-curso", { state: { email } });
+            } else {
+                setError("Usuario o contraseña incorrectos");
+            }
+        } catch (err) {
+            setError("Error de conexión con el servidor" + err.message);
+        }
     };
 
     return (
@@ -49,6 +67,7 @@ export default function LoginPage() {
                             required
                         />
                     </div>
+                    {error && <div className="alert alert-danger py-1">{error}</div>}
                     <button type="submit" className="btn btn-primary w-100">Entrar</button>
                 </form>
             </div>

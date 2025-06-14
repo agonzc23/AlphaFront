@@ -125,7 +125,12 @@ export default function ExamenReal({ examenName, questions, duration, onFinish }
             <ConfirmAlert
                 show={showConfirm}
                 title="Confirmar"
-                message="¿Seguro que quieres finalizar el examen? No podrás modificar tus respuestas."
+                message={
+                    <>
+                    ¿Seguro que quieres finalizar el examen?<br />
+                    No podrás modificar tus respuestas.
+                    </>
+                }
                 onConfirm={handleConfirmFinish}
                 onCancel={() => setShowConfirm(false)}
             />
