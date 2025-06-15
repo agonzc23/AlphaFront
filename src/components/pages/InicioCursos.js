@@ -12,7 +12,7 @@ export default function InicioCursos() {
             navigate("/seleccionar-curso");
             return;
         }
-        fetch("dummyData/cursos.json")
+        fetch("http://localhost:8081/courses", { credentials: "include" })
             .then(response => response.json())
             .then(data => {
                 // Busca el curso por id o name según tu estructura
@@ -34,7 +34,7 @@ export default function InicioCursos() {
         <div style={{ fontFamily: "Poppins, sans-serif" }}>
             <div>
                 <h1>{cursoInfo.name}</h1>
-                <p>{cursoInfo.desc}</p>
+                <p>{cursoInfo.description}</p>
             </div>
             <div className="card mb-3" style={{ width: "11rem" }}>
                 {/* Aquí puedes mostrar más info del curso si tienes */}
@@ -44,7 +44,7 @@ export default function InicioCursos() {
                     onClick={handleSalir}
                     style={{ width: "11rem" }}
                 >
-                    SALIR DEL CURSO
+                    SALIR DEL BLOQUE
                 </button>
             </div>
         </div>

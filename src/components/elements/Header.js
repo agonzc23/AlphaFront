@@ -39,10 +39,10 @@ export default function Header() {
 
     // Cambia la contraseña llamando a tu API
     const handleChangePassword = async (currentPass, newPass) => {
-        const response = await fetch("http://localhost:8081/users/change-password", {
-            method: "POST",
+        const response = await fetch("http://localhost:8081/users/me/change-password", {
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
-            credentials: "include",
+            credentials: "include", // Esto es correcto
             body: JSON.stringify({ currentPassword: currentPass, newPassword: newPass })
         });
         if (!response.ok) {

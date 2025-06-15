@@ -9,7 +9,7 @@ export default function SeleccionarCurso() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("dummyData/cursos.json")
+        fetch("http://localhost:8081/courses", { credentials: "include" })
             .then(response => response.json())
             .then(data => setCursos(data));
     }, []);
@@ -31,8 +31,8 @@ export default function SeleccionarCurso() {
     return (
         <div style={{ fontFamily: "Poppins, sans-serif" }}>
             <div>
-                <h1>Selecciona un curso</h1>
-                <p>Elige el curso al que quieres acceder</p>
+                <h1>Selecciona un bloque</h1>
+                <p>Elige el bloque al que quieres acceder</p>
             </div>
             <div>
                 {cursos.map((curso) => (
@@ -40,7 +40,7 @@ export default function SeleccionarCurso() {
                         <div className="card-body d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 className="card-title">{curso.name}</h5>
-                                <p className="card-text">{curso.desc}</p>
+                                <p className="card-text">{curso.description}</p>
                             </div>
                             <button
                                 type="button"
