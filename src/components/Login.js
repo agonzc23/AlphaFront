@@ -6,6 +6,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const { setUser } = useContext(AppContext);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,6 +17,7 @@ export default function LoginPage() {
         const password = form.elements.password.value;
 
         try {
+            setLoading(true);
             const response = await fetch("http://localhost:8081/auth/signin", {
                 method: "POST",
                 headers: {
@@ -32,7 +34,9 @@ export default function LoginPage() {
                 setError("Usuario o contraseña incorrectos");
             }
         } catch (err) {
-            setError("Error de conexión con el servidor" + err.message);
+            setError("Error de conexión con el servidor");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -71,6 +75,34 @@ export default function LoginPage() {
                     <button type="submit" className="btn btn-primary w-100">Entrar</button>
                 </form>
             </div>
+            {loading && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        width: "100vw",
+                        height: "100vh",
+                        background: "rgba(255,255,255,0.7)",
+                        zIndex: 9999,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}
+                >
+                    <i className="bi bi-gear-fill spin" style={{ fontSize: 80, color: "#00abe4" }}></i>
+                </div>
+            )}
+            <style>
+                {`
+                .spin {
+                    animation: spin 1s linear infinite;
+                }
+                @keyframes spin {
+                    100% { transform: rotate(360deg); }
+                }
+                `}
+            </style>
         </div>
     );
 }

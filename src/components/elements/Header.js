@@ -55,9 +55,9 @@ export default function Header() {
         <>
             <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
                 style={{ marginLeft: "200px", position: "relative" }}>
-                <a href="/cursos" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <span className="fs-4">{curso ? curso.name : ""}</span>
-                </a>
+                <span className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark fs-4" style={{ cursor: "default", userSelect: "none" }}>
+                    {curso ? curso.name : ""}
+                </span>
                 <ul className="nav nav-pills" style={{ position: "relative" }}>
                     <li className="nav-item me-2" ref={menuRef} style={{ position: "relative" }}>
                         <button

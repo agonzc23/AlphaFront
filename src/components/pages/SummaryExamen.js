@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
+import ConfirmAlert from "../elements/ConfirmAlert";
 
 export default function SummaryExamen() {
     const location = useLocation();
     const examen = location.state?.examen;
-    const { curso } = useContext(AppContext); // <-- Añade esto
+    const { curso } = useContext(AppContext);
+    const navigate = useNavigate();
 
     // Paginación
     const [pagina, setPagina] = useState(1);
@@ -17,6 +19,23 @@ export default function SummaryExamen() {
         examen?.questions ? JSON.parse(JSON.stringify(examen.questions)) : []
     );
     const [confirmando, setConfirmando] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    // Estado para ConfirmAlert
+    const [alertConfig, setAlertConfig] = useState({
+        show: false,
+        title: "",
+        message: "",
+        onConfirm: null,
+        onCancel: null
+    });
+
+    // Estado para mostrar resultado final
+    const [finalAlert, setFinalAlert] = useState({
+        show: false,
+        title: "",
+        message: ""
+    });
 
     if (!examen) {
         return (
@@ -86,22 +105,6 @@ export default function SummaryExamen() {
 
         const seHaModificado = !preguntasSonIguales(examen.questions || [], preguntasEditadas);
 
-        let continuar = true;
-        if (seHaModificado) {
-            continuar = window.confirm(
-                "Se han modificado preguntas o respuestas. ¿Deseas confirmar la creación del examen con los cambios?"
-            );
-        } else {
-            continuar = window.confirm(
-                "¿Deseas confirmar la creación del examen?"
-            );
-        }
-
-        if (!continuar) {
-            setConfirmando(false);
-            return;
-        }
-
         // --- Generar el JSON limpio según tu modelo DTO ---
         const preguntasLimpias = preguntasEditadas.map(q => ({
             questionText: q.questionText,
@@ -120,48 +123,108 @@ export default function SummaryExamen() {
             duration: examen.duration,
             createdAt: examen.createdAt,
             questions: preguntasLimpias,
-            courseName: curso?.name || "", // <-- Usa el nombre del header (AppContext)
+            courseId:
+                examen.courseId && typeof examen.courseId === "object"
+                    ? examen.courseId.id
+                    : examen.courseId ?? null,
+            courseName: curso?.name || "",
             userCreatedId: examen.userCreatedId?.id || examen.userCreatedId
         };
 
-        try {
-            if (seHaModificado) {
-                // Primero elimina el examen original
-                await fetch(`http://localhost:8081/exams/${examen.id}`, {
-                    method: "DELETE",
-                    credentials: "include"
-                });
-            }
-            // Luego sube el examen (modificado o no)
-            const response = await fetch("http://localhost:8081/exams/upload-json", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(examDto),
-                credentials: "include"
-            });
-            if (!response.ok) {
-                let errorMsg = `Error al subir el examen (HTTP ${response.status})`;
-                try {
-                    const errorData = await response.json();
-                    errorMsg += "\n" + errorData;
-                } catch {
-                    try {
-                        const text = await response.text();
-                        errorMsg += "\n" + (text || "");
-                    } catch {}
+        // Mostrar confirmación antes de enviar
+        setAlertConfig({
+            show: true,
+            title: "Confirmar creación",
+            message: seHaModificado
+                ? "Se han modificado preguntas o respuestas. ¿Deseas confirmar la creación del examen con los cambios?"
+                : "¿Deseas confirmar la creación del examen?",
+            onConfirm: async () => {
+                setAlertConfig(a => ({ ...a, show: false }));
+                if (!seHaModificado) {
+                    // Si no hay cambios, solo redirige
+                    navigate("/examenes");
+                    setConfirmando(false);
+                    return;
                 }
-                throw new Error(errorMsg);
+                try {
+                    setLoading(true);
+                    await fetch(`http://localhost:8081/exams/${examen.id}`, {
+                        method: "DELETE",
+                        credentials: "include"
+                    });
+                    const response = await fetch("http://localhost:8081/exams/upload-json", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(examDto),
+                        credentials: "include"
+                    });
+                    if (!response.ok) {
+                        let errorMsg = `Error al subir el examen (HTTP ${response.status})`;
+                        try {
+                            const errorData = await response.json();
+                            errorMsg += "\n" + (errorData.message || JSON.stringify(errorData, null, 2));
+                        } catch {
+                            try {
+                                const text = await response.text();
+                                errorMsg += "\n" + (text || "");
+                            } catch {}
+                        }
+                        setFinalAlert({
+                            show: true,
+                            title: "Error",
+                            message: errorMsg
+                        });
+                        throw new Error(errorMsg);
+                    }
+                    navigate("/examenes");
+                } catch (err) {
+                    setFinalAlert({
+                        show: true,
+                        title: "Error",
+                        message: "Error al confirmar el examen: " + (err.message || err)
+                    });
+                } finally {
+                    setLoading(false);
+                    setConfirmando(false);
+                }
+            },
+            onCancel: () => {
+                setAlertConfig(a => ({ ...a, show: false }));
+                setConfirmando(false);
             }
-            alert("Examen confirmado correctamente.");
-        } catch (err) {
-            alert("Error al confirmar el examen: " + (err.message || err));
-        } finally {
-            setConfirmando(false);
-        }
+        });
     };
 
     return (
         <div className="container mt-4" style={{ fontFamily: "Poppins, sans-serif", maxWidth: 900 }}>
+            {loading && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        width: "100vw",
+                        height: "100vh",
+                        background: "rgba(255,255,255,0.7)",
+                        zIndex: 9999,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}
+                >
+                    <i className="bi bi-gear-fill spin" style={{ fontSize: 80, color: "#00abe4" }}></i>
+                </div>
+            )}
+            <style>
+                {`
+                .spin {
+                    animation: spin 1s linear infinite;
+                }
+                @keyframes spin {
+                    100% { transform: rotate(360deg); }
+                }
+                `}
+            </style>
             <h2 className="mb-3">Resumen del Examen</h2>
             <div className="card mb-4">
                 <div className="card-body">
@@ -176,6 +239,21 @@ export default function SummaryExamen() {
                     </button>
                 </div>
             </div>
+
+            <ConfirmAlert
+                show={alertConfig.show}
+                title={alertConfig.title}
+                message={alertConfig.message}
+                onConfirm={alertConfig.onConfirm}
+                onCancel={alertConfig.onCancel}
+            />
+            <ConfirmAlert
+                show={finalAlert.show}
+                title={finalAlert.title}
+                message={finalAlert.message}
+                onConfirm={() => setFinalAlert({ ...finalAlert, show: false })}
+                onCancel={() => setFinalAlert({ ...finalAlert, show: false })}
+            />
 
             <h5>Preguntas</h5>
             {preguntasMostradas.map((pregunta, idx) => {

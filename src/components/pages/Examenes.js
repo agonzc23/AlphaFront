@@ -13,13 +13,21 @@ export default function Examenes() {
     const [selectedExamen, setSelectedExamen] = useState(null);
 
     useEffect(() => {
-        fetch("/dummyData/realExams.json")
+        fetch("http://localhost:8081/exams", {
+            method: "GET",
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setExamenes(data || []));
     }, []);
 
     // Filtra los exámenes por el courseId del contexto
-    const examenesFiltrados = examenes.filter(e => e.courseId === cursoId);
+    const examenesFiltrados = examenes.filter(e => {
+        if (typeof e.courseId === "object" && e.courseId !== null) {
+            return e.courseId.id === cursoId;
+        }
+        return e.courseId === cursoId;
+    });
 
     if (examenActivo) {
         const examen = examenes.find(e => e.id === examenActivo);
