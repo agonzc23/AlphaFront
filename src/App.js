@@ -8,6 +8,9 @@ import Clases from "./components/pages/Clases";
 import Examenes from "./components/pages/Examenes";
 import Contenido from "./components/pages/Contenido";
 import SeleccionarCurso from "./components/pages/SeleccionarCurso";
+import Results from "./components/pages/Results";
+import CrearExamen from "./components/pages/CrearExamen";
+import SummaryExamen from "./components/pages/SummaryExamen";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
             <Route path="/clases" element={<Clases />} />
             <Route path="/examenes" element={<Examenes />} />
             <Route path="/contenido" element={<Contenido />} />
+            <Route path="/resultados" element={<Results />} />
+            <Route path="/crear-examen" element={<CrearExamen />} />
+            <Route path="/summary-exam" element={<SummaryExamen />} />
           </Route>
         </Routes>
       </Router>

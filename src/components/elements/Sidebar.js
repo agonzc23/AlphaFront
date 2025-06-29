@@ -25,8 +25,8 @@ export default function Sidebar() {
             <h2 className="mb-4"
                 style={{ color: "#E9F1FA", fontSize: "1.5rem" }}>Project Alpha</h2>
             <nav>
-                <ul className="list-unstyled m-0 p-0">
-                    <li className="mb-3">
+                <ul className="nav flex-column">
+                    <li className="nav-item mb-3">
                         <NavLink
                             to="/cursos"
                             className={({ isActive }) =>
@@ -42,7 +42,8 @@ export default function Sidebar() {
                             <span style={{ color: "#E9F1FA" }}>Inicio</span>
                         </NavLink>
                     </li>
-                    <li className="mb-3">
+                    { 
+                    <li className="nav-item mb-3">
                         <NavLink
                             to="/contenido"
                             className={({ isActive }) =>
@@ -58,7 +59,25 @@ export default function Sidebar() {
                             <span style={{ color: "#E9F1FA" }}>Contenidos</span>
                         </NavLink>
                     </li>
-                    <li className="mb-3">
+                    /*
+                    <li className="nav-item mb-3">
+                        <NavLink
+                            to="/clases"
+                            className={({ isActive }) =>
+                                "text-decoration-none fw-medium d-flex align-items-center" +
+                                (isActive ? " bg-white bg-opacity-25 rounded px-2" : "") +
+                                (disabled ? ` ${disabledClass}` : "")
+                            }
+                            tabIndex={disabled ? -1 : 0}
+                            aria-disabled={disabled}
+                            onClick={handleDisabledClick}
+                        >
+                            <i className="bi bi-camera-reels me-2" style={{ color: "#E9F1FA" }}></i>
+                            <span style={{ color: "#E9F1FA" }}>Clases</span>
+                        </NavLink>
+                    </li>
+                    */}
+                    <li className="nav-item mb-3">
                         <NavLink
                             to="/examenes"
                             className={({ isActive }) =>
@@ -74,9 +93,9 @@ export default function Sidebar() {
                             <span style={{ color: "#E9F1FA" }}>Examenes</span>
                         </NavLink>
                     </li>
-                    <li className="mb-3">
+                    <li className="nav-item mb-3">
                         <NavLink
-                            to="/clases"
+                            to="/resultados"
                             className={({ isActive }) =>
                                 "text-decoration-none fw-medium d-flex align-items-center" +
                                 (isActive ? " bg-white bg-opacity-25 rounded px-2" : "") +
@@ -86,8 +105,8 @@ export default function Sidebar() {
                             aria-disabled={disabled}
                             onClick={handleDisabledClick}
                         >
-                            <i className="bi bi-camera-reels me-2" style={{ color: "#E9F1FA" }}></i>
-                            <span style={{ color: "#E9F1FA" }}>Clases</span>
+                            <i className="bi-graph-up me-2" style={{ color: "#E9F1FA" }}></i>
+                            <span style={{ color: "#E9F1FA" }}>Resultados</span>
                         </NavLink>
                     </li>
                 </ul>

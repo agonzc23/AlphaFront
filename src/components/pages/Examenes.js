@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import ExamenReal from "./ExamenReal";
 import ConfirmAlert from "../elements/ConfirmAlert";
-import { AppContext } from "../AppContext"; // Ajusta la ruta si es necesario
+import { AppContext } from "../AppContext"; // ...ya importado...
+import { useNavigate } from "react-router-dom";
 
 export default function Examenes() {
-    const { cursoId } = useContext(AppContext); // courseId desde el contexto
+    const { cursoId, user } = useContext(AppContext);
+    const navigate = useNavigate();
     const [examenes, setExamenes] = useState([]);
     const [examenActivo, setExamenActivo] = useState(null);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -50,6 +52,16 @@ export default function Examenes() {
     return (
         <div style={{ fontFamily: "Poppins, sans-serif" }}>
             <h1>Examenes</h1>
+            {(user?.role === "admin" || user?.role === "Profesor") && (
+                <button
+                    type="button"
+                    className="btn btn-success mb-4"
+                    style={{ backgroundColor: "#00abe4", borderColor: "#00abe4" }}
+                    onClick={() => navigate("/crear-examen")}
+                >
+                    Crear Examen
+                </button>
+            )}
             <div>
                 {examenesFiltrados.map(examen => (
                     <div className="card mb-3" style={{ width: "40rem" }} key={examen.id}>
@@ -69,13 +81,15 @@ export default function Examenes() {
                                 >
                                     REALIZAR EXAMEN
                                 </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary btn-sm"
-                                    style={{ width: "11rem", backgroundColor: "#FFA500", borderColor: "#FFA500" }}
-                                >
-                                    EDITAR EXAMEN
-                                </button>
+                                {(user?.role === "admin" || user?.role === "Profesor") && (
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary btn-sm"
+                                        style={{ width: "11rem", backgroundColor: "#FFA500", borderColor: "#FFA500" }}
+                                    >
+                                        EDITAR EXAMEN
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>

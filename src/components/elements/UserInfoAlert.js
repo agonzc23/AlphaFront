@@ -63,9 +63,9 @@ export default function UserInfoAlert({ show, user, onClose, onChangePassword })
                 }}
             >
                 <h5>Información de usuario</h5>
+                <div className="mb-2"><strong>{user?.role}</strong></div>
                 <div className="mb-2"><strong>Nombre:</strong> {user?.username}</div>
-                <div className="mb-2"><strong>Email:</strong> {user?.email}</div>
-                <div className="mb-3"><strong>Rol:</strong> {user?.role}</div>
+                <div className="mb-3"><strong>Email:</strong> {user?.email}</div>
                 {success && !showChange && (
                     <div className="alert alert-success py-1">{success}</div>
                 )}

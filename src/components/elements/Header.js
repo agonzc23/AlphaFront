@@ -65,7 +65,7 @@ export default function Header() {
                             className="btn btn-outline-primary"
                             onClick={() => setShowMenu((v) => !v)}
                         >
-                            {user?.username || user?.email || "Usuario"} <i className="bi bi-person-circle"></i>
+                            <i className="bi bi-person-circle"></i>
                         </button>
                         {showMenu && (
                             <div

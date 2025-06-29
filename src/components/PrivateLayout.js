@@ -22,7 +22,7 @@ export default function PrivateLayout() {
     }, [user, curso, navigate]);
 
     return (
-        <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+        <div className="d-flex flex-column" style={{ minHeight: "100vh", overflowX: "hidden"  }}>
             <Header />
             <Sidebar />
             <div style={{ flex: 1, marginLeft: "220px" }}>
