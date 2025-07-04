@@ -1,0 +1,25 @@
+.btn-custom-alpha {
+  background-color: #00abe4 !important;
+  border-color: #00abe4 !important;
+  color: #fff !important;
+}
+.btn-custom-warning {
+  background-color: #FFA500 !important;
+  border-color: #FFA500 !important;
+  color: #fff !important;
+}
+.btn-danger, .btn-custom-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: #fff !important;
+}
+.btn-custom-edit {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+}
+.btn-custom-save {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #fff !important;
+}

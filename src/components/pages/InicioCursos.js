@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
+import CustomButton from "../elements/CustomButton";
 
 export default function InicioCursos() {
     const [cursoInfo, setCursoInfo] = useState(null);
@@ -87,14 +88,15 @@ export default function InicioCursos() {
                 ))}
             </div>
             <div className="card mb-3" style={{ width: "11rem" }}>
-                <button
+                <CustomButton
                     type="button"
-                    className="btn btn-danger btn-sm"
+                    className="btn-sm"
+                    variant="custom-danger"
                     onClick={handleSalir}
                     style={{ width: "11rem" }}
                 >
                     SALIR DEL BLOQUE
-                </button>
+                </CustomButton>
             </div>
         </div>
     );

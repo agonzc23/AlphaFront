@@ -4,7 +4,7 @@ import { AppContext } from "../AppContext";
 import ConfirmAlert from "../elements/ConfirmAlert";
 import CustomButton from "../elements/CustomButton";
 
-export default function SummaryExamen() {
+export default function EditExamen() {
     const location = useLocation();
     const examen = location.state?.examen;
     const { curso } = useContext(AppContext);
@@ -99,7 +99,7 @@ export default function SummaryExamen() {
         return true;
     }
 
-    // Confirmar creación del examen
+    // Confirmar edición del examen
     const handleConfirmar = async () => {
         if (confirmando) return;
         setConfirmando(true);
@@ -135,14 +135,13 @@ export default function SummaryExamen() {
         // Mostrar confirmación antes de enviar
         setAlertConfig({
             show: true,
-            title: "Confirmar creación",
+            title: "Confirmar edición",
             message: seHaModificado
-                ? "Se han modificado preguntas o respuestas. ¿Deseas confirmar la creación del examen con los cambios?"
-                : "¿Deseas confirmar la creación del examen?",
+                ? "Se han modificado preguntas o respuestas. ¿Deseas guardar los cambios en el examen?"
+                : "¿Deseas guardar el examen sin cambios?",
             onConfirm: async () => {
                 setAlertConfig(a => ({ ...a, show: false }));
                 if (!seHaModificado) {
-                    // Si no hay cambios, solo redirige
                     navigate("/examenes");
                     setConfirmando(false);
                     return;
@@ -182,7 +181,7 @@ export default function SummaryExamen() {
                     setFinalAlert({
                         show: true,
                         title: "Error",
-                        message: "Error al confirmar el examen: " + (err.message || err)
+                        message: "Error al editar el examen: " + (err.message || err)
                     });
                 } finally {
                     setLoading(false);
@@ -194,23 +193,6 @@ export default function SummaryExamen() {
                 setConfirmando(false);
             }
         });
-    };
-
-    // Elimina el examen y navega a /examenes
-    const handleCancelarExamen = async () => {
-        setAlertConfig(a => ({ ...a, show: false }));
-        setLoading(true);
-        try {
-            await fetch(`http://localhost:8081/exams/${examen.id}`, {
-                method: "DELETE",
-                credentials: "include"
-            });
-        } catch (err) {
-            // Manejo de error opcional
-        } finally {
-            setLoading(false);
-            navigate("/examenes");
-        }
     };
 
     return (
@@ -243,7 +225,7 @@ export default function SummaryExamen() {
                 }
                 `}
             </style>
-            <h2 className="mb-3">Resumen del Examen</h2>
+            <h2 className="mb-3">Editar Examen</h2>
             <div className="card mb-4">
                 <div className="card-body">
                     <h4 className="card-title">{examen.title}</h4>
@@ -258,24 +240,16 @@ export default function SummaryExamen() {
                         onClick={handleConfirmar}
                         disabled={confirmando}
                     >
-                        Confirmar
+                        Guardar Cambios
                     </CustomButton>
                     <CustomButton
                         type="button"
                         className="mx-2 mt-2"
                         variant="custom-danger"
-                        onClick={() => {
-                            setAlertConfig({
-                                show: true,
-                                title: "Cancelar y eliminar examen",
-                                message: "¿Estás seguro de que deseas cancelar y eliminar este examen? Esta acción no se puede deshacer.",
-                                onConfirm: handleCancelarExamen,
-                                onCancel: () => setAlertConfig(a => ({ ...a, show: false }))
-                            });
-                        }}
+                        onClick={() => navigate("/examenes")}
                     >
                         Cancelar
-                    </CustomButton>                    
+                    </CustomButton>
                 </div>
             </div>
 

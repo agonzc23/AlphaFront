@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "./AppContext";
+import LoadingOverlay from "./elements/LoadingOverlay";
+import CustomButton from "./elements/CustomButton";
+import "../styles/LoadingOverlay.css";
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -42,6 +45,7 @@ export default function LoginPage() {
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light" style={{ fontFamily: 'sans-serif' }}>
+            <LoadingOverlay show={loading} />
             <div className="card p-4 shadow" style={{ minWidth: "320px", maxWidth: "400px" }}>
                 <h1 className="mb-4"
                     style={{
@@ -72,37 +76,16 @@ export default function LoginPage() {
                         />
                     </div>
                     {error && <div className="alert alert-danger py-1">{error}</div>}
-                    <button type="submit" className="btn btn-primary w-100">Entrar</button>
+                    <CustomButton
+                        type="submit"
+                        className="w-100"
+                        variant="custom-alpha"
+                        disabled={loading}
+                    >
+                        {loading ? "Entrando..." : "Entrar"}
+                    </CustomButton>
                 </form>
             </div>
-            {loading && (
-                <div
-                    style={{
-                        position: "fixed",
-                        top: 0,
-                        left: 0,
-                        width: "100vw",
-                        height: "100vh",
-                        background: "rgba(255,255,255,0.7)",
-                        zIndex: 9999,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}
-                >
-                    <i className="bi bi-gear-fill spin" style={{ fontSize: 80, color: "#00abe4" }}></i>
-                </div>
-            )}
-            <style>
-                {`
-                .spin {
-                    animation: spin 1s linear infinite;
-                }
-                @keyframes spin {
-                    100% { transform: rotate(360deg); }
-                }
-                `}
-            </style>
         </div>
     );
 }

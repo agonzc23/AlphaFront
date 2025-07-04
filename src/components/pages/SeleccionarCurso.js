@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
+import CustomButton from "../elements/CustomButton";
 
 export default function SeleccionarCurso() {
     const [cursos, setCursos] = useState([]);
@@ -42,13 +43,14 @@ export default function SeleccionarCurso() {
                                 <h5 className="card-title">{curso.name}</h5>
                                 <p className="card-text">{curso.description}</p>
                             </div>
-                            <button
+                            <CustomButton
                                 type="button"
-                                className="btn btn-secondary btn-sm"
+                                className="btn-sm"
+                                variant="custom-alpha"
                                 onClick={() => handleSeleccion(curso, curso.id)}
                             >
                                 Seleccionar
-                            </button>
+                            </CustomButton>
                         </div>
                     </div>
                 ))}

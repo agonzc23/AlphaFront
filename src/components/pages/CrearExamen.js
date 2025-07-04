@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
 import { useNavigate } from "react-router-dom";
+import LoadingOverlay from "../elements/LoadingOverlay";
+import AlertMessage from "../elements/AlertMessage";
+import CustomButton from "../elements/CustomButton";
 
 export default function CrearExamen() {
     const [nombre, setNombre] = useState("");
@@ -78,24 +81,7 @@ export default function CrearExamen() {
 
     return (
         <div className="container mt-4 d-flex justify-content-start" style={{ fontFamily: "Poppins, sans-serif", position: "relative" }}>
-            {loading && (
-                <div
-                    style={{
-                        position: "fixed",
-                        top: 0,
-                        left: 0,
-                        width: "100vw",
-                        height: "100vh",
-                        background: "rgba(255,255,255,0.7)",
-                        zIndex: 9999,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}
-                >
-                    <i className="bi bi-gear-fill spin" style={{ fontSize: 80, color: "#00abe4" }}></i>
-                </div>
-            )}
+            <LoadingOverlay show={loading} />
             <div style={{ maxWidth: 700, width: "100%" }}>
                 <h2 className="mb-4">Crear Examen</h2>
                 <div className="alert alert-info py-2 mb-4">
@@ -103,8 +89,9 @@ export default function CrearExamen() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label className="form-label">Archivo (.docx)</label>
+                        <label className="form-label" htmlFor="archivo">Archivo (.docx)</label>
                         <input
+                            id="archivo"
                             type="file"
                             className="form-control"
                             accept=".docx"
@@ -113,8 +100,9 @@ export default function CrearExamen() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Nombre</label>
+                        <label className="form-label" htmlFor="nombre">Nombre</label>
                         <input
+                            id="nombre"
                             type="text"
                             className="form-control"
                             value={nombre}
@@ -123,8 +111,9 @@ export default function CrearExamen() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Descripción</label>
+                        <label className="form-label" htmlFor="descripcion">Descripción</label>
                         <textarea
+                            id="descripcion"
                             className="form-control"
                             value={descripcion}
                             onChange={e => setDescripcion(e.target.value)}
@@ -133,8 +122,9 @@ export default function CrearExamen() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Tiempo (minutos)</label>
+                        <label className="form-label" htmlFor="tiempo">Tiempo (minutos)</label>
                         <input
+                            id="tiempo"
                             type="number"
                             className="form-control"
                             min={5}
@@ -145,23 +135,28 @@ export default function CrearExamen() {
                             required
                         />
                     </div>
-                    {error && <div className="alert alert-danger py-1">{error}</div>}
-                    {success && <div className="alert alert-success py-1">{success}</div>}
-                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#00abe4", borderColor: "#00abe4" }}>
+                    <AlertMessage type="danger" message={error} />
+                    <AlertMessage type="success" message={success} />
+                    <div style={{ display: "flex", gap: "1rem" }}>
+                        <CustomButton
+                            type="submit"
+                            className="w-100 mt-2"
+                            variant="custom-alpha"
+                            disabled={loading}
+                        >
                         Generar Examen
-                    </button>
+                        </CustomButton>
+                        <CustomButton
+                            type="button"
+                            className="w-100 mt-2"
+                            variant="custom-danger"
+                            onClick={() => navigate("/examenes")}
+                        >
+                        Cancelar
+                        </CustomButton>
+                    </div>
                 </form>
             </div>
-            <style>
-                {`
-                .spin {
-                    animation: spin 1s linear infinite;
-                }
-                @keyframes spin {
-                    100% { transform: rotate(360deg); }
-                }
-                `}
-            </style>
         </div>
     );
 }

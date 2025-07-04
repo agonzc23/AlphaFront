@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import ExamenReal from "./ExamenReal";
-import ConfirmAlert from "../elements/ConfirmAlert";
+import CustomButton from "../elements/CustomButton";
+import "../../styles/CustomButton.css";
 import { AppContext } from "../AppContext";
 import { useNavigate } from "react-router-dom";
+import ConfirmAlert from "../elements/ConfirmAlert";
 
 export default function Examenes() {
     const { cursoId, user } = useContext(AppContext);
@@ -109,14 +111,13 @@ export default function Examenes() {
         <div style={{ fontFamily: "Poppins, sans-serif" }}>
             <h1>Examenes</h1>
             {(user?.role === "admin" || user?.role === "Profesor") && (
-                <button
-                    type="button"
-                    className="btn btn-success mb-4"
-                    style={{ backgroundColor: "#00abe4", borderColor: "#00abe4" }}
+                <CustomButton
+                    variant="custom-alpha"
+                    className="mb-4"
                     onClick={() => navigate("/crear-examen")}
                 >
                     Cargar Examen
-                </button>
+                </CustomButton>
             )}
             <div>
                 {examenesFiltrados.map(examen => (
@@ -150,26 +151,29 @@ export default function Examenes() {
                                 <li><strong>Número de preguntas:</strong> {examen.questions ? examen.questions.length : 0}</li>
                             </ul>
                             <div className="mt-3">
-                                <button
-                                    type="button"
-                                    className="btn btn-primary btn-sm me-2"
-                                    style={{ width: "11rem", backgroundColor: "#00abe4", borderColor: "#00abe4" }}
+                                <CustomButton
+                                    variant="custom-alpha"
+                                    size="sm"
+                                    className="me-2"
+                                    style={{ width: "11rem" }}
                                     onClick={() => handleRealizarClick(examen.id)}
                                 >
                                     REALIZAR EXAMEN
-                                </button>
+                                </CustomButton>
                                 {(user?.role === "admin" || user?.role === "Profesor") && (
                                     <>
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary btn-sm me-2"
-                                            style={{ width: "11rem", backgroundColor: "#FFA500", borderColor: "#FFA500" }}
+                                        <CustomButton
+                                            variant="custom-warning"
+                                            size="sm"
+                                            className="me-2"
+                                            style={{ width: "11rem" }}
+                                            onClick={() => navigate("/editar-examen", { state: { examen } })}
                                         >
                                             EDITAR EXAMEN
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-danger btn-sm"
+                                        </CustomButton>
+                                        <CustomButton
+                                            variant="danger"
+                                            size="sm"
                                             style={{ width: "11rem" }}
                                             onClick={() => {
                                                 setExamenAEliminar(examen);
@@ -177,7 +181,7 @@ export default function Examenes() {
                                             }}
                                         >
                                             ELIMINAR EXAMEN
-                                        </button>
+                                        </CustomButton>
                                     </>
                                 )}
                             </div>
